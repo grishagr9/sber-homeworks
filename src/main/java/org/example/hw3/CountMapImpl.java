@@ -22,7 +22,7 @@ public class CountMapImpl<T> implements CountMap<T>{
 
     @Override
     public int getCount(T o) {
-        return map.get(o);
+        return map.get(o) == null? 0 : map.get(o);
     }
 
     @Override
@@ -55,12 +55,13 @@ public class CountMapImpl<T> implements CountMap<T>{
 
     @Override
     public void toMap(Map<T, Integer> destination) {
-        for (T item: this.map.keySet()) {
-            if(destination.containsKey(item)){
-                destination.put(item, destination.get(item)+1);
-            }else{
-                destination.put(item, 1);
-            }
-        }
+//        for (T item: this.map.keySet()) {
+//            if(destination.containsKey(item)){
+//                destination.put(item, destination.get(item)+1);
+//            }else{
+//                destination.put(item, 1);
+//            }
+//        }
+        destination.putAll(this.map);
     }
 }
