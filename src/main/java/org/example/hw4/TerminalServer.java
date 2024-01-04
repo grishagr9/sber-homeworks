@@ -10,7 +10,7 @@ public class TerminalServer {
     /*
     * положить деньги на счет
     * */
-    public Boolean putMoney(int sum){
+    public Boolean putMoney(int sum) throws IllegalArgumentException{
         if(sum <= 0){
             throw new IllegalArgumentException("Сумма пополнения не может быть меньше нуля");
         }
@@ -22,13 +22,13 @@ public class TerminalServer {
     /*
     * снять деньги со счета
     * */
-    public Boolean getMoney(int sum){
+    public Boolean getMoney(int sum) throws IllegalArgumentException, NotEnoughMoneyException {
         if(sum <= 0){
             throw new IllegalArgumentException("Сумма снятия не может быть меньше нуля");
         }
         int updateMoney = this.money - sum;
         if(updateMoney < 0){
-            throw new IllegalArgumentException("Недостаточно средств для выполнения операции");
+            throw new NotEnoughMoneyException("Недостаточно средств для выполнения операции");
         }
         this.money = updateMoney;
         return true;
