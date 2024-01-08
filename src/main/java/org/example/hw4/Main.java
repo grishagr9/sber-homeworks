@@ -72,7 +72,7 @@ public class Main {
         System.out.println("г) после достижения маркера конца входного потока, но до закрытия самого потока, программа пытаться считать данные. - 2) проверяемое исключение;");
     }
     public static void main(String[] args)  {
-        //task1();
+        task1();
         //task2();
         //task3();
     }
