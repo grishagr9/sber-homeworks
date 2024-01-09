@@ -20,7 +20,11 @@ public class PhoneBook {
     }
 
     public String get(String surname){
-        return book.get(surname).toString();
+        if(book.containsKey(surname)) {
+            return book.get(surname).toString();
+        }else{
+            return "";
+        }
     }
 
     public void print(){
