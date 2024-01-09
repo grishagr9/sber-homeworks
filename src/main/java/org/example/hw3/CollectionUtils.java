@@ -27,7 +27,7 @@ public class CollectionUtils {
         source.add(t);
     }
 
-    public static<T> void removeAll(List<T> removeFrom, List<? extends T> c2) {
+    public static<T> void removeAll(List<? super T> removeFrom, List<? extends T> c2) {
         removeFrom.removeAll(c2);
     }
 
