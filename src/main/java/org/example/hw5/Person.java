@@ -1,10 +1,21 @@
 package org.example.hw5;
 
+import lombok.*;
+
+
+
+import java.util.UUID;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class Person {
 
-    public String name;
-    public int age;
-    private long id;
+    private String name;
+    private int age;
+    private boolean man;
+    public Person() {
+    }
 
     public void print(){
         System.out.printf("hello, %s %d years old%n",name, age);
@@ -13,4 +24,5 @@ public class Person {
     private void incAge(){
         age+=1;
     }
+
 }

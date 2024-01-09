@@ -1,8 +1,17 @@
 package org.example.hw5;
 
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student extends Person{
 
-    public int curce;
+    private int graduate;
 
+    public void nextLevel(){
+        graduate++;
+    }
 
 }
