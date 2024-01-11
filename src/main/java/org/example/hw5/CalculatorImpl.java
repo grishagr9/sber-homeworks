@@ -4,6 +4,9 @@ public class CalculatorImpl implements Calculator{
 
     @Override
     public int calc(int arg) {
+        if(arg<0){
+            throw new IllegalArgumentException();
+        }
         return helperCalc(arg);
     }
 

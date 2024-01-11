@@ -1,16 +1,20 @@
 package org.example.hw5;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Main {
     public static final String MONDAY = "MONDAY";
     public static final String VTORNIK = "MONDAY";
+
     static void task1(){
         Calculator calculator = new CalculatorImpl();
         System.out.println(calculator.calc(4));
     }
+
     static void task2(){
         Student s = new Student();
         Person p = new Person();
@@ -35,6 +39,7 @@ public class Main {
             }
         }
     }
+
     static void task3(){
         Person person = new Person();
         Method[] methods = person.getClass().getDeclaredMethods();
@@ -44,14 +49,58 @@ public class Main {
             }
         }
     }
+
+    static void questionsTask(){
+        System.out.println("1. Почему на любом объекте можем вызвать метод getClass()?");
+        System.err.println("1. Метод getClass() является одним из методов класса Object, от которого наследуются все классы " +
+                "в Java. Поэтому этот метод может быть вызван на любом объекте, так как все объекты являются экземплярами" +
+                " какого-либо класса.");
+        System.out.println("2. Почему на любом классе можем вызвать .class?");
+        System.err.println("2. На любом классе мы можем вызвать метод .class, потому что в Java каждый класс является объектом" +
+                " типа java.lang.Class. Метод .class возвращает объект типа Class, представляющий данный класс");
+        System.out.println("3. В чём отличие динамического прокси от статического?\n" +
+                "Приведите преимущества и недостатки.");
+        System.err.println("3. Статическое прокси - это прокси-сервер, предназначенный для обработки заранее определенных типов запросов.\n" +
+                "Динамическое прокси - это прокси-сервер, который создается и настраивается во время работы системы.\n" +
+                "Преимущества динамического прокси Гибкость и адаптивность: Динамический прокси может адаптироваться к изменяющимся условиям\n" +
+                " и требованиям, что делает его гибким в использовании.\n" +
+                "Недостатки динамического прокси:\n" +
+                "Высокая нагрузка на систему: \n" +
+                "Использование динамического прокси может привести к увеличению нагрузки на систему, так как прокси может\n" +
+                " требовать дополнительных ресурсов для обработки и фильтрации запросов.");
+    }
+
     static void task4(){
         System.out.println(MONDAY);
         System.out.println(VTORNIK);
+
+        Class<?> clazz = Main.class;
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field: fields) {
+            try {
+                if(Modifier.isFinal(field.getModifiers())){
+                    String value = (String) field.get(null);
+                    String name = field.getName();
+
+                    if(!value.equals(name)){
+                        System.out.printf("Ошибка именования константы, значение %s не соответствует имени %s\n", value, name);
+                    }
+                }
+            }catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+    static void task7(){
+
     }
     public static void main(String[] args) {
+        //questionsTask();
         //task1();
         //task2();
         //task3();
-        task4();
+        //task4();
     }
 }
