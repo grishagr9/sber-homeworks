@@ -43,27 +43,23 @@ public class BeanUtils {
     private static String getPropertyName(Method method) {
         String methodName = method.getName();
         if (methodName.startsWith("get")) {
-            return methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
+            return methodName.substring(3);
         } else if (methodName.startsWith("is")) {
-            return methodName.substring(2, 3).toLowerCase() + methodName.substring(3);
+            return methodName.substring(2);
         }
         return null;
     }
 
     // Метод для поиска метода setter с заданным именем и типом параметра в классе
     private static Method findSetter(Class<?> clazz, String propertyName, Class<?> propertyType) {
-        try {
-            PropertyDescriptor pd = new PropertyDescriptor(propertyName, clazz);
-            MethodDescriptor[] descriptors = null;
-                    //pd.getWriteMethodDescriptors();
-            for (MethodDescriptor descriptor : descriptors) {
-                Method setter = descriptor.getMethod();
-                if (setter.getParameterCount() == 1 && setter.getParameterTypes()[0].isAssignableFrom(propertyType)) {
-                    return setter;
+        Method[] methods = clazz.getDeclaredMethods();
+
+        for (Method method : methods) {
+            if (method.getName().startsWith("set")) {
+                if (method.getParameterCount() == 1 && method.getParameterTypes()[0].equals(propertyType) && method.getName().substring(3).equals(propertyName)) {
+                    return method;
                 }
             }
-        } catch (IntrospectionException e) {
-            return null;
         }
         return null;
     }

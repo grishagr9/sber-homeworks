@@ -94,7 +94,13 @@ public class Main {
     }
 
     static void task7(){
+        Customer person = new Customer("John", 25);
+        User user = new User();
 
+        BeanUtils.assign(user, person);
+
+        System.out.println(user.getName()); // Выведет "John"
+        System.out.println(user.getAge());  // Выведет 25
     }
     public static void main(String[] args) {
         //questionsTask();
@@ -102,5 +108,45 @@ public class Main {
         //task2();
         //task3();
         //task4();
+        task7();
+    }
+
+    static class Customer {
+        private String name;
+        private int age;
+
+        public Customer(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+    }
+
+    static class User {
+        private String name;
+        private int age;
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
     }
 }
