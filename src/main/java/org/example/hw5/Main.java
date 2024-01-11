@@ -12,7 +12,11 @@ public class Main {
 
     static void task1(){
         Calculator calculator = new CalculatorImpl();
-        System.out.println(calculator.calc(4));
+        try {
+            System.out.println(calculator.calc(4));
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     static void task2(){
@@ -93,6 +97,16 @@ public class Main {
 
     }
 
+    static void task6(){
+        try {
+            Calculator  calculator = new PerfomanceProxy(new CalculatorImpl());
+            System.out.println(calculator.calc(3));
+        }catch (NoSuchMethodException e){
+            System.err.println(e.toString());
+        }
+
+    }
+
     static void task7(){
         Customer person = new Customer("John", 25);
         User user = new User();
@@ -102,13 +116,15 @@ public class Main {
         System.out.println(user.getName()); // Выведет "John"
         System.out.println(user.getAge());  // Выведет 25
     }
+
     public static void main(String[] args) {
         //questionsTask();
         //task1();
         //task2();
         //task3();
         //task4();
-        task7();
+        task6();
+        //task7();
     }
 
     static class Customer {

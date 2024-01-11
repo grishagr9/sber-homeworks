@@ -3,6 +3,7 @@ package org.example.hw5;
 public class CalculatorImpl implements Calculator{
 
     @Override
+    @Metric(value = true)
     public int calc(int arg) {
         if(arg<0){
             throw new IllegalArgumentException();
