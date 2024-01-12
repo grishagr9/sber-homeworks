@@ -20,7 +20,7 @@ public class PerfomanceProxy implements Calculator{
             long startTime = System.nanoTime();
             int result = calculator.calc(arg);
             long endTime = System.nanoTime();
-            System.out.printf("Время работы метода %d\n", endTime-startTime);
+            System.out.printf("Время работы метода %d (в наносек)\n", endTime-startTime);
             return result;
         }
         return calculator.calc(arg);
