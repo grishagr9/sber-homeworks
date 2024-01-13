@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.sql.SQLOutput;
+import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
 public class Main {
@@ -97,6 +98,32 @@ public class Main {
 
     }
 
+    static void task5(){
+        try {
+
+
+            Calculator delegate = new CalculatorImpl();
+            Calculator calculator = (Calculator) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
+                    delegate.getClass().getInterfaces(),
+                    new CachedInvocationHandler(delegate));
+            run(calculator);
+        }
+        catch (NoSuchMethodException e){
+            System.out.println(e.toString());
+        }
+    }
+    private static void run(Calculator calculator) throws NoSuchMethodException {
+        System.out.println(calculator.calc(1));
+        System.out.println(calculator.calc(5));
+        System.out.println(calculator.calc(6));
+        System.out.println(calculator.calc(1));
+        System.out.println(calculator.calc(1));
+        System.out.println(calculator.calc(1));
+        System.out.println(calculator.calc(1));
+        System.out.println(calculator.calc(1));
+        System.out.println(calculator.calc(1));
+
+    }
     static void task6(){
         try {
             Calculator  calculator = new PerfomanceProxy(new CalculatorImpl());
@@ -123,6 +150,7 @@ public class Main {
         //task2();
         //task3();
         //task4();
+        //task5();
         //task6();
         //task7();
     }
