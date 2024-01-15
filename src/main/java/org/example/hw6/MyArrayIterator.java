@@ -18,7 +18,7 @@ public class MyArrayIterator<T> {
         return index < size && array[index]!=null;
     }
 
-    public void remove(){
+    public Boolean remove() throws UnsupportedOperationException{
         throw new UnsupportedOperationException("remove");
     }
 
