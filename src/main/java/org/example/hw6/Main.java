@@ -38,8 +38,13 @@ public class Main {
             System.out.print(stringIter.next());
         }
     }
+
+    static void task2(){
+        System.out.println("go to https://github.com/grishagr9/socialNetwork.git");
+    }
     public static void main(String[] args) {
         //questionsTask();
         //task1();
+        task2();
     }
 }
