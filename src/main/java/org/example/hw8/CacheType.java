@@ -1,6 +1,6 @@
 package org.example.hw8;
 
-public enum CahceType {
+public enum CacheType {
     IN_MEMORY,
     FILE
 }
