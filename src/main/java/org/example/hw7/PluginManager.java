@@ -11,16 +11,10 @@ public class PluginManager {
     }
 
     public Plugin load(String pluginName, String pluginClassName){
-        return new Plugin() {
-            @Override
-            public String getName() {
-                return null;
-            }
-
-            @Override
-            public void init(JavacTask task, String... args) {
-
-            }
-        };
+        //todo Соответственно, разные
+        //разработчики могут назвать свои классы одинаковым именем, ваш загрузчик должен корректно
+        //это обрабатывать.
+        //PluginManager ищет скомпилированные классы плагина в папке pluginRootDirectory\pluginName\
+        return null;
     }
 }

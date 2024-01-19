@@ -1,6 +1,7 @@
 package org.example.hw7;
 
-import java.util.Arrays;
+
+import com.sun.source.util.Plugin;
 
 public class Main {
     public static void main(String[] args) {
