@@ -1,8 +1,12 @@
 package org.example.hw8;
 
 public class CacheProxy {
+
+    private ServiceImpl service;
+
     public Service cache(ServiceImpl service) {
-        return new ServiceImpl();
+        this.service = service;
+        return this.service;
     }
 
     public Loader cache(LoaderImpl service) {

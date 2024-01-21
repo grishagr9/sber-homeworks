@@ -5,5 +5,8 @@ public class Main {
         CacheProxy cacheProxy = new CacheProxy();
         Service service = cacheProxy.cache(new ServiceImpl());
         Loader loader = cacheProxy.cache(new LoaderImpl());
+
+        service.run("item1", 5);
+
     }
 }
