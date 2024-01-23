@@ -3,7 +3,6 @@ package org.example.hw9;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,7 +11,7 @@ public class Main {
         someCollection.add(new Person("Steve",18));
         someCollection.add(new Person("Mikel",40));
 
-        Map m = Streams.of(someCollection).
+        Map<?, Person> m = Streams.of(someCollection).
                 filter(p->p.getAge()>20).
                 transform( p -> new Person(p.getName(),p.getAge() + 30))
                 .toMap(Person::getName, p->p);

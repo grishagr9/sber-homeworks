@@ -33,10 +33,9 @@ public class Streams<T> {
         return new Streams<T>(newCollection);
     }
 
-    public Map<T,T> toMap(Function<? super T, ?> keys, Function<? super T, ? extends T> values) {
+    public Map<?, T> toMap(Function<? super T, ?> keys, Function<? super T, ? extends T> values) {
         Map map = new HashMap<>();
         for(var item : collection){
-            System.out.println(keys.apply(item));
             map.put(keys.apply(item), values.apply(item));
         }
         return map;
