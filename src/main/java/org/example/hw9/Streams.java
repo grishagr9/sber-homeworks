@@ -33,7 +33,7 @@ public class Streams<T> {
         return new Streams<T>(newCollection);
     }
 
-    public Map<?, T> toMap(Function<? super T, ?> keys, Function<? super T, ? extends T> values) {
+    public Map<?, T> toMap(Function<? super T, ?> keys, Function<? super T, ?> values) {
         Map map = new HashMap<>();
         for(var item : collection){
             map.put(keys.apply(item), values.apply(item));
