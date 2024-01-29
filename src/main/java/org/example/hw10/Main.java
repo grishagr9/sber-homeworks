@@ -20,7 +20,7 @@ public class Main {
         Random randomNumber = new Random();
         try(FileWriter fileWriter = new FileWriter(PATH_NUMBERS)){
             for (int i = 0; i < n; i++) {
-                int number = randomNumber.nextInt(20);
+                int number = randomNumber.nextInt(50);
                 fileWriter.write(Integer.toString(number));
                 fileWriter.write("\n");
             }

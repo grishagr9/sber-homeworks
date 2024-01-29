@@ -2,6 +2,8 @@ package org.example.hw10;
 
 import lombok.AllArgsConstructor;
 
+import java.math.BigInteger;
+
 @AllArgsConstructor
 public class FactorialThread implements Runnable{
 
@@ -9,9 +11,9 @@ public class FactorialThread implements Runnable{
 
     @Override
     public void run() {
-        long res = 1;
+        BigInteger res = new BigInteger("1");
         while(number > 1){
-            res *= number;
+            res = res.multiply(BigInteger.valueOf(number));
             number--;
         }
         System.out.println(res);
