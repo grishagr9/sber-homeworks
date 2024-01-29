@@ -9,8 +9,8 @@ public class FactorialThread implements Runnable{
 
     @Override
     public void run() {
-        int res = 1;
-        while(number>1){
+        long res = 1;
+        while(number > 1){
             res *= number;
             number--;
         }
