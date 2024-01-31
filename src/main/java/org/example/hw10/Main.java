@@ -29,6 +29,11 @@ public class Main {
         }
     }
 
+    /**
+     * чтение из файла чисел в лист
+     * @param path путь до файла
+     * @return список чисел из файла
+     */
     private static List<Integer> readNumbersFromFile(String path){
         List<Integer> result = new ArrayList<>();
         try(FileReader fileReader = new FileReader(path)){
@@ -45,14 +50,22 @@ public class Main {
         return result;
     }
 
-    public static void main(String[] args) {
-        final int countNum = 10;
+    /**
+     *
+     * @param countNum количество чисел для подсчета факториала
+     */
+    public static void calculateFact(final int countNum){
         generateFile(countNum);
         List<Integer> list = readNumbersFromFile(PATH_NUMBERS);
+        System.out.print("Найти факториалы чисел ");
         System.out.println(list);
         for (int i = 0; i < countNum; i++) {
             Thread thread = new Thread(new FactorialThread(list.get(i)));
             thread.start();
         }
+    }
+
+    public static void main(String[] args) {
+        calculateFact(10);
     }
 }
