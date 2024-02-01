@@ -27,6 +27,15 @@ public class Main {
                 """);
     }
     public static void main(String[] args) {
-        questionTask();
+        //questionTask();
+
+        ThreadPool threadPool = new FixedThreadPool(3);
+        for (int i = 0; i < 5; i++) {
+            final int taskId = i;
+            threadPool.execute(() -> {
+                System.out.println("Task " + taskId + " is running on thread " + Thread.currentThread().getName());
+            });
+        }
+        threadPool.start();
     }
 }
