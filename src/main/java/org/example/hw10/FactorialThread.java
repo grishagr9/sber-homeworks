@@ -11,12 +11,20 @@ public class FactorialThread implements Runnable{
 
     @Override
     public void run() {
+        BigInteger res = calculate();
+        System.out.printf("%d! = %d\n", number, res);
+    }
+
+    public BigInteger calculate(){
+        if(number < 0){
+            throw new IllegalArgumentException("number can not be negative");
+        }
         BigInteger res = new BigInteger("1");
         int i = number;
         while(i > 1){
             res = res.multiply(BigInteger.valueOf(i));
             i--;
         }
-        System.out.printf("%d! = %d\n", number, res);
+        return res;
     }
 }
