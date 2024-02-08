@@ -1,5 +1,7 @@
 package org.example.hw11;
 
+import static java.lang.Thread.sleep;
+
 public class Main {
     static void questionTask(){
         System.out.println("""
@@ -26,9 +28,8 @@ public class Main {
                 8. Прерывает поток
                 """);
     }
-    public static void main(String[] args) {
-        //questionTask();
 
+    static void task1(){
         ThreadPool threadPool = new FixedThreadPool(3);
         for (int i = 0; i < 5; i++) {
             final int taskId = i;
@@ -37,5 +38,35 @@ public class Main {
             });
         }
         threadPool.start();
+    }
+
+    static void task2(){
+        ThreadPool threadPool = new ScalableThreadPool(2, 5);
+
+        threadPool.start();
+
+        for (int i = 0; i < 10; i++) {
+            final int taskId = i;
+            threadPool.execute(() -> {
+                System.out.println("Task " + taskId + " executed by thread " + Thread.currentThread().getName());
+                try {
+                    sleep(1000); // Имитация выполнения задачи
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        try {
+            sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        ((ScalableThreadPool) threadPool).stop();
+    }
+
+    public static void main(String[] args) {
+        //questionTask();
+        //task1();
+        task2();
     }
 }
