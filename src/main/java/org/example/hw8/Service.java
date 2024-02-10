@@ -1,5 +1,6 @@
 package org.example.hw8;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import static org.example.hw8.CacheType.IN_MEMORY;
 
 interface Service {
     @Cache(cacheType = FILE, fileNamePrefix = "data", zip = true, identityBy = {String.class, double.class})
-    double run(String item, double value);
+    List<String> run(String item, double value, LocalDate localDate);
 
     @Cache(cacheType = IN_MEMORY, listList = 100_000)
     List<String> work(String item);

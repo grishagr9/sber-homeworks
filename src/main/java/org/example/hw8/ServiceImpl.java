@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,35 +20,38 @@ public class ServiceImpl implements Service, Serializable {
     }
 
     @Override
-    public double run(String item, double value) {
-        CacheType cacheType = null;
-        String filenamePrefix = null;
-        boolean zip = false;
-        Class<?>[] classes = new Class[0];
-        long lists = 0;
-
-        list.add(item);
-        if(list.contains(item)){
-            //todo если уже считали
-        }
-        double result = doHardWork(value);
-
-        try {
-            Cache annotation = this.getClass().getMethod("run").getAnnotation(Cache.class);
-            cacheType = annotation.cacheType();
-            filenamePrefix = Objects.equals(annotation.fileNamePrefix(), "") ? "run" : annotation.fileNamePrefix();
-            zip = annotation.zip();
-            classes = annotation.identityBy();
-            lists = annotation.listList();
-        }catch (NoSuchMethodException e){
-            System.out.println(e.getMessage());
-        }
-        if(cacheType == CacheType.FILE){
-            cacheToFile(filenamePrefix, zip, classes, result);
-        }else{
-            cacheToMemory(lists, result);
-        }
-
+    public List<String> run(String item, double value, LocalDate date) {
+//        CacheType cacheType = null;
+//        String filenamePrefix = null;
+//        boolean zip = false;
+//        Class<?>[] classes = new Class[0];
+//        long lists = 0;
+//
+//        list.add(item);
+//        if(list.contains(item)){
+//            //todo если уже считали
+//        }
+//        double result = doHardWork(value);
+//
+//        try {
+//            Cache annotation = this.getClass().getMethod("run").getAnnotation(Cache.class);
+//            cacheType = annotation.cacheType();
+//            filenamePrefix = Objects.equals(annotation.fileNamePrefix(), "") ? "run" : annotation.fileNamePrefix();
+//            zip = annotation.zip();
+//            classes = annotation.identityBy();
+//            lists = annotation.listList();
+//        }catch (NoSuchMethodException e){
+//            System.out.println(e.getMessage());
+//        }
+//        if(cacheType == CacheType.FILE){
+//            cacheToFile(filenamePrefix, zip, classes, result);
+//        }else{
+//            cacheToMemory(lists, result);
+//        }
+//
+//        return result;
+        List<String> result = new ArrayList<>();
+        result.add(item + "_" + value + "_" + date.toString());
         return result;
     }
 
@@ -69,6 +73,8 @@ public class ServiceImpl implements Service, Serializable {
 
     @Override
     public List<String> work(String item) {
-        return null;
+        List<String> res = new ArrayList<>();
+        res.add(item);
+        return res;
     }
 }
