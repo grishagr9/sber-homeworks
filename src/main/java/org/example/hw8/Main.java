@@ -15,7 +15,7 @@ public class Main {
         Service serviceProxy = (Service) Proxy.newProxyInstance(
                 ClassLoader.getSystemClassLoader(), service.getClass().getInterfaces(), new CachedInvocationHandler(service)
         );
-        String[] tasks = {"singing", "meditating", "painting"};
+        String[] tasks = {"work", "go", "some doing"};
         double[] durations = {1, 2};
 
         performTasks(serviceProxy, tasks, durations);
