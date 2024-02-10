@@ -1,5 +1,7 @@
 package org.example.hw4;
 
+import org.example.hw4.exceptions.NotEnoughMoneyException;
+
 public class TerminalServer {
     private int money;
 

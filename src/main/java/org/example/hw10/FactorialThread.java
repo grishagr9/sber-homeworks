@@ -9,10 +9,12 @@ public class FactorialThread implements Runnable{
 
     int number;
 
+    private static final String OUTPUT_STRING = "%d! = %d\n";
+
     @Override
     public void run() {
         BigInteger res = calculate();
-        System.out.printf("%d! = %d\n", number, res);
+        System.out.printf(OUTPUT_STRING, number, res);
     }
 
     public BigInteger calculate(){
