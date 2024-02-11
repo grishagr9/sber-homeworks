@@ -1,4 +1,4 @@
-package org.example.hw4;
+package org.example.hw4.interfaces;
 
 import org.example.hw4.exceptions.IncorrectSumException;
 import org.example.hw4.exceptions.NotEnoughMoneyException;

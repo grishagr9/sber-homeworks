@@ -2,12 +2,13 @@ package org.example.hw4;
 
 import org.example.hw4.exceptions.IncorrectSumException;
 import org.example.hw4.exceptions.NotEnoughMoneyException;
+import org.example.hw4.interfaces.Terminal;
 
 import javax.security.auth.login.AccountLockedException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TerminalImpl implements Terminal{
+public class TerminalImpl implements Terminal {
     private final TerminalServer server;
     private final PinValidator pinValidator;
 
