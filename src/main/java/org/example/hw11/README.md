@@ -9,3 +9,52 @@
 6.  Что за исключение IllegalMonitorStateException ? Выбрасывается, когда несоответствующий поток пытается вызвать метод wait, notify или notifyAll на объекте, не являющемся монитором.
 7.  Что делает метод Thread#join ? Вызывается из потока, и ждет завершения другого потока (блокируется, пока другой поток не закончит выполнение)
 8.  Что делает метод Thread#interrupt ? Прерывает поток
+## Task1 реализовать ThreadPool
+
+public interface ThreadPool {
+    void start(); // запускает потоки. Потоки бездействуют, до тех пор пока не появится новое задание в очереди (см. execute)
+
+    void execute(Runnable runnable); // складывает это задание в очередь. Освободившийся поток должен выполнить это задание. Каждое задание должны быть выполнено ровно 1 раз
+}
+
+## Task2 public class FixedThreadPool implements ThreadPool{
+
+    private final int countThreads;
+    private final Queue<Runnable> taskQueue;
+
+    private final MyThread[] threads;
+
+    public FixedThreadPool(int countThreads){
+        this.countThreads = countThreads;
+        this.taskQueue = new LinkedList<>();
+        threads = new MyThread[countThreads];
+
+        for (int i = 0; i < countThreads; i++) {
+            threads[i] = new MyThread();
+            threads[i].start();
+        }
+    }
+
+    @Override
+    public void start() {
+        synchronized (taskQueue){
+            taskQueue.notifyAll();
+        }
+    }
+
+    @Override
+    public void execute(Runnable runnable) {
+        synchronized (taskQueue){
+            taskQueue.add(runnable);
+            taskQueue.notify();
+        }
+    }
+
+}
+
+## Результат 
+Удалось реализовать интерфейс ThreadPool, а также два класса - с фиксированным количеством потоков и класс,  в котором количество потоков может меняться от минимального к максимальному. 
+в классе Main проверил работоспособность обоих классов на примере. 
+1. Создаем пул потоков, и запускаем 3 задачи, каждая задача выводит информацию о выполнении в консоль
+2. Проверил работоспособность второй реализации интерфейса ThreadPool - созданные задачи добавляются в очередь, далее выполняются. После выполнения пулы останавливаются, прерывают свои потоки.
+ 
