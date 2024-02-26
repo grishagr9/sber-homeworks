@@ -28,6 +28,9 @@ public class ScalableThreadPool implements ThreadPool{
         }
     }
 
+    /**
+     * позволяет начать выполнение задач в очереди, уведомляя все потоки, ожидающие выполнения задач.
+     */
     @Override
     public void start() {
         synchronized (taskQueue){
@@ -35,6 +38,10 @@ public class ScalableThreadPool implements ThreadPool{
         }
     }
 
+    /**
+     * добавляет новую задачу в очередь. Если количество задач превышает число потоков и не достигло максимального значения, создается новый поток.
+     * @param runnable
+     */
     @Override
     public void execute(Runnable runnable) {
         taskQueue.offer(runnable);
@@ -49,11 +56,15 @@ public class ScalableThreadPool implements ThreadPool{
         }
     }
 
+    /**
+     * останавливает все потоки, вызывая метод interrupt().
+     */
     public void stop() {
         for (int i = 0; i < maxThreads; i++) {
             threads[i].interrupt();
         }
     }
+
     private class MyThread extends Thread{
         @Override
         public void run() {

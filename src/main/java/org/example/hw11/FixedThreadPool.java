@@ -7,10 +7,10 @@ import java.util.concurrent.ExecutorService;
 
 public class FixedThreadPool implements ThreadPool{
 
-    private final int countThreads;
-    private final Queue<Runnable> taskQueue;
+    private final int countThreads; // Количество потоков
+    private final Queue<Runnable> taskQueue;// Очередь задач
 
-    private final MyThread[] threads;
+    private final MyThread[] threads;// Массив потоков
 
     public FixedThreadPool(int countThreads){
         this.countThreads = countThreads;
@@ -23,13 +23,20 @@ public class FixedThreadPool implements ThreadPool{
         }
     }
 
+    /**
+     * Запуск потоков
+     */
     @Override
     public void start() {
         synchronized (taskQueue){
-            taskQueue.notifyAll();
+            taskQueue.notifyAll(); // Уведомление всех потоков
         }
     }
 
+    /**
+     * Метод для выполнения задачи, Добавляет задачу в очередь, уведомляет потоки
+     * @param runnable
+     */
     @Override
     public void execute(Runnable runnable) {
         synchronized (taskQueue){

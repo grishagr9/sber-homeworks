@@ -31,10 +31,10 @@ public class Main {
 
     static void task1(){
         ThreadPool threadPool = new FixedThreadPool(3);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             final int taskId = i;
             threadPool.execute(() -> {
-                System.out.println("Task " + taskId + " is running on thread " + Thread.currentThread().getName());
+                System.out.println("doWork" + Thread.currentThread().getName());
             });
         }
         threadPool.start();
@@ -66,7 +66,7 @@ public class Main {
 
     public static void main(String[] args) {
         //questionTask();
-        //task1();
-        task2();
+        // task1();
+        //task2();
     }
 }
