@@ -45,4 +45,8 @@ public class FixedThreadPool implements ThreadPool{
         }
     }
 
+    public int getCountThreads(){
+        return threads.length;
+    }
+
 }
