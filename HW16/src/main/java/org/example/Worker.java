@@ -23,11 +23,8 @@ public class Worker {
         List<Integer> data = dbConnect.getData(i);
         if (data == null) {
             data = calculateFibonachi(i);
-            dbConnect.saveData(i, data);
+            cacheData(i, data);
         }
-
-        // Сохранить данные в кэше
-        cacheData(i, data);
 
         return data;
     }

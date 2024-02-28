@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        DBConnect dbConnect = new DBConnect();
-        var a = dbConnect.getData(2);
-        System.out.println(a);
+       Worker worker = new Worker();
+       var res = worker.fibonachi(9);
+        System.out.println(res);
     }
 }
