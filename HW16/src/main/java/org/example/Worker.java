@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Worker {
+
+    private static Source dbConnect;
+
+    public Worker(){
+       dbConnect = new DBConnect();
+    }
+
     @Cache(DBConnect.class)
     public List<Integer> fibonachi(int i) {
         // Проверить, есть ли уже кэшированные данные для данного аргумента i
@@ -12,14 +19,11 @@ public class Worker {
             return cachedData;
         }
 
-        // Создать экземпляр класса H2DB
-        Source source = createSource(DBConnect.class);
-
         // Получить данные из базы данных или вычислить их
-        List<Integer> data = source.getData(i);
+        List<Integer> data = dbConnect.getData(i);
         if (data == null) {
             data = calculateFibonachi(i);
-            source.saveData(i, data);
+            dbConnect.saveData(i, data);
         }
 
         // Сохранить данные в кэше
@@ -29,17 +33,11 @@ public class Worker {
     }
 
     private List<Integer> getCachedData(int i) {
-        // Получить кэшированные данные для аргумента i
-        return null;
+        return dbConnect.getData(i);
     }
 
     private void cacheData(int i, List<Integer> data) {
-        // Сохранить кэшированные данные для аргумента i
-    }
-
-    private Source createSource(Class<? extends Source> sourceClass) {
-        // Создать экземпляр класса источника данных
-        return null;
+        dbConnect.saveData(i, data);
     }
 
     private List<Integer> calculateFibonachi(int i) {
@@ -62,6 +60,5 @@ public class Worker {
         }
 
         return result;
-
     }
 }
