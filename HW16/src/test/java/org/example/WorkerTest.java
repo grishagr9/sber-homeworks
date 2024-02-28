@@ -48,4 +48,18 @@ class WorkerTest {
         Assertions.assertEquals(excepted, actual);
     }
 
+    @Test
+    void givenNum_whenStartWork_thenResult(){
+        //given
+        Worker worker = new Worker();
+        int i = 9;
+        List<Integer> excepted = List.of(1, 1, 2, 3, 5, 8, 13, 21, 34);
+
+        //when
+        List<Integer> actual = worker.fibonachi(9);
+
+        //then
+        Assertions.assertEquals(excepted, actual);
+    }
+
 }

@@ -11,32 +11,44 @@ public class Worker {
        dbConnect = new DBConnect();
     }
 
+    /**
+     * Получение списка чисел фибоначи до i-го элемента
+     * @param i элемент, до которого рассчитывать числа фибоначи
+     * @return
+     */
     @Cache(DBConnect.class)
     public List<Integer> fibonachi(int i) {
-        // Проверить, есть ли уже кэшированные данные для данного аргумента i
-        List<Integer> cachedData = getCachedData(i);
-        if (cachedData != null) {
-            return cachedData;
-        }
-
-        // Получить данные из базы данных или вычислить их
-        List<Integer> data = dbConnect.getData(i);
+        List<Integer> data = getCachedData(i);
         if (data == null) {
             data = calculateFibonachi(i);
             cacheData(i, data);
         }
-
         return data;
     }
 
+    /**
+     * Инкапсуляция метода getData(int i) интерфейса Source
+     * @param i
+     * @return
+     */
     private List<Integer> getCachedData(int i) {
         return dbConnect.getData(i);
     }
 
+    /**
+     * Инкапсуляция метода saveData(int i, List<Integer> data) интерфейса Source
+     * @param i
+     * @param data
+     */
     private void cacheData(int i, List<Integer> data) {
         dbConnect.saveData(i, data);
     }
 
+    /**
+     * Расчет чисел фибоначи до i-го элемента
+     * @param i
+     * @return
+     */
     private List<Integer> calculateFibonachi(int i) {
         if(i <= 0){
             throw new IllegalArgumentException("number can not be negative");

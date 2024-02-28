@@ -23,6 +23,11 @@ public class DBConnect implements Source{
         }
     }
 
+    /**
+     * Получает данные из таблицы по ключу i
+     * @param i ключ
+     * @return
+     */
     @Override
     public List<Integer> getData(int i) {
         List<Integer> result = null;
@@ -39,6 +44,12 @@ public class DBConnect implements Source{
         return result;
     }
 
+    /**
+     * Обрабатывает результаты из базы данных и конвертирует их в List
+     * @param resultSet
+     * @return лист с результатами
+     * @throws SQLException
+     */
     private List<Integer> resultToList(ResultSet resultSet) throws SQLException {
         java.sql.Array resultSetArray = null;
         while (resultSet.next()){
@@ -53,6 +64,11 @@ public class DBConnect implements Source{
         }
     }
 
+    /**
+     * Сохраняет данные в таблицу data по ключу i и по значению list
+     * @param i
+     * @param list
+     */
     @Override
     public void saveData(int i, List<Integer> list) {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
