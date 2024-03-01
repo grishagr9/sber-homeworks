@@ -11,6 +11,7 @@
     <modules>
         <module>HW16</module>
         <module>HW1-14</module>
+        <module>HW15</module>
     </modules>
 
     <dependencies>
