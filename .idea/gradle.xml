@@ -15,6 +15,11 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/HW18" />
         <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/HW18" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
