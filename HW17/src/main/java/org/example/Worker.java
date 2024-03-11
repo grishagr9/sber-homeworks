@@ -23,6 +23,14 @@ public class Worker {
 
     private final DownLoader downLoader;
     private final int MAX_CONCURRENT_DOWNLOADS = 3;
+
+    /**
+     *
+     * @param inputPath Файл, откуда брать ссылки для скачивания файлов
+     * @param outputPath Директория, куда скачать файлы
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void run(String inputPath, String outputPath) throws IOException, InterruptedException {
         downLoader.setMAX_DOWNLOAD_SPEED(500); //устанавливаем скорость скачивания
         BufferedReader reader = null; // Получить список ссылок из текстового файла
