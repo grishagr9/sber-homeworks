@@ -13,10 +13,11 @@ import java.nio.file.Paths;
 @Component
 @Setter
 @Getter
-public class DownLoader {
+public class DownLoader implements Loader{
 
     private int MAX_DOWNLOAD_SPEED; // КБ/с
 
+    @Override
     public void downloadFile(String link, Path downloadPath) {
         try {
             URL url = new URL(link);
