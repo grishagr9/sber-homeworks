@@ -9,19 +9,30 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class RecipeServies {
+public class RecipeService {
 
     private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
 
-    public void insert(String name){
+    public RecipeEntity insert(String recipeName){
         var recipe = new RecipeEntity();
-        recipe.setName(name);
+        recipe.setName(recipeName);
         recipeRepository.save(recipe);
-        var ingredient = new IngredientsEntity();
-        ingredient.setRecipe(recipe);
-        ingredient.setQuantity(100);
-        ingredient.setName(name);
-        ingredientsRepository.save(ingredient);
+
+        return recipe;
+    }
+
+    public void delete(String recipeName){
+        var recipe = recipeRepository.findByName(recipeName);
+
+        recipeRepository.delete(recipe);
+    }
+
+    public boolean contain(String recipeName){
+        return recipeRepository.findByName(recipeName) != null;
+    }
+
+    public RecipeEntity search(String recipeName){
+        return recipeRepository.findByName(recipeName);
     }
 }

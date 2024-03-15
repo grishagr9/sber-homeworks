@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IngredientsRepository extends CrudRepository<IngredientsEntity, Integer> {
 
-    void deleteByRecipe(RecipeEntity recipe);
+    void deleteAllByRecipe(RecipeEntity recipe);
 }

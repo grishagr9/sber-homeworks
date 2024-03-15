@@ -28,6 +28,6 @@ public class RecipeEntity {
     @Column(columnDefinition = "TEXT")
     private String name;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<IngredientsEntity> ingredientsEntityList = new ArrayList<>();
 }

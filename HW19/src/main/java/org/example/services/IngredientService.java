@@ -2,6 +2,7 @@ package org.example.services;
 
 import lombok.RequiredArgsConstructor;
 import org.example.entity.IngredientsEntity;
+import org.example.entity.RecipeEntity;
 import org.example.repositories.IngredientsRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,12 @@ public class IngredientService {
 
     private final IngredientsRepository repository;
 
-    public void insert(String name, Integer quantity){
-        IngredientsEntity ingredients = new IngredientsEntity();
-        ingredients.setQuantity(quantity);
-        ingredients.setName(name);
-        repository.save(ingredients);
+    public void insert(RecipeEntity recipe, String name, Integer quantity){
+        var ingredient = new IngredientsEntity();
+        ingredient.setRecipe(recipe);
+        ingredient.setName(name);
+        ingredient.setQuantity(quantity);
+
+        repository.save(ingredient);
     }
 }
