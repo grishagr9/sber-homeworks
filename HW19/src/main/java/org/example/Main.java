@@ -12,7 +12,7 @@ public class Main {
         var recipeService = factory.getBean(RecipeServies.class);
         var ingreidientsService = factory.getBean(IngredientService.class);
 
-        recipeService.insert("XAXAXA");
+
 
     }
 }
